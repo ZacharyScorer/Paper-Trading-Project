@@ -5,6 +5,10 @@ A money counter tracks the user's net profit. Additionally, users can search for
 stock. On the home page, users can see the top five gainers and losers in the market. Finally, users have access to a private watchlist which they 
 can add stocks to for easy access.
 
+<h3> Home </h3>
+![Home](/images/Home.PNG?raw=true)
+
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
