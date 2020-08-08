@@ -6,7 +6,7 @@ stock. On the home page, users can see the top five gainers and losers in the ma
 can add stocks to for easy access.
 
 <h3> Home </h3>
-![Home](/images/Home.PNG?raw=true)
+![Screenshot](https://imgur.com/w7rYNdy)
 
 
 ## Getting Started
