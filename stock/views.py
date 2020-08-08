@@ -9,24 +9,23 @@ import os
 # These use Financial Modeling Prep api
 # Gainers/losers on the home page
 def home(request):
-    # api_key = os.getenv('FMP_API_KEY')
-    # # Gainer
-    # response = requests.get("https://financialmodelingprep.com/api/v3/gainers?apikey={}".format(api_key))
-    # data = response.json()
-    # gain = []
-    # for index in range(0, 5):
-    #     gain.append(GainerLoser(data, index, True))
-    #
-    # # Loser
-    # response = requests.get("https://financialmodelingprep.com/api/v3/losers?apikey={}".format(api_key))
-    # data = response.json()
-    # lose = []
-    # for index in range(0, 5):
-    #     lose.append(GainerLoser(data, index, False))
-    #
-    # context = {'gain': gain, 'lose': lose}
-    # return render(request, 'stock/home.html', context)
-    return render(request, 'stock/home.html')
+    api_key = os.getenv('FMP_API_KEY')
+    # Gainer
+    response = requests.get("https://financialmodelingprep.com/api/v3/gainers?apikey={}".format(api_key))
+    data = response.json()
+    gain = []
+    for index in range(0, 5):
+        gain.append(GainerLoser(data, index, True))
+
+    # Loser
+    response = requests.get("https://financialmodelingprep.com/api/v3/losers?apikey={}".format(api_key))
+    data = response.json()
+    lose = []
+    for index in range(0, 5):
+        lose.append(GainerLoser(data, index, False))
+
+    context = {'gain': gain, 'lose': lose}
+    return render(request, 'stock/home.html', context)
 
 
 # These use Finnhub.io
