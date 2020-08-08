@@ -15,11 +15,14 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
-
 ```
 pip install django
+pip install python-dotenv
+pip install django-environ
+pip install django-crispy-forms
+pip install requests
 ```
+Create a .env file that follows the sample with [Finnhub](https://finnhub.io/) and [Financial Modeling Prep](https://financialmodelingprep.com/) API keys respectively.
 
 End with an example of getting some data out of the system or using it for a little demo
 
