@@ -1,0 +1,33 @@
+{% extends "stock/base.html" %}
+{% block content %}
+    <h1 class="display-3 text-center">Your Watchlist</h1>
+    <!-- Printing out the companies and their info -->
+    {% for item in data %}
+        {% if item.gain == 'positive' %}
+            <div style="clear:both" class="row col-12">
+                <h2 style="color:white" class="display-2">{{ item.ticker }}</h2>
+                <h3 style="color:#5cb85c; margin-left:59%" class="display-3">${{ item.price }}</h3>
+                <h4 style="color:#5cb85c; margin-left:82%; margin-top:-1.3em">{{ item.change }} ({{ item.change_percentage }}%)</h4>
+            </div>
+        {% elif data.gain == 'neutral' %}
+            <div style="clear:both" class="row col-12">
+                <h2 style="color:white" class="display-2">{{ item.ticker }}</h2>
+                <h3 style="color:white; margin-left:59%" class="display-3">${{ item.price }}</h3>
+                <h4 style="color:white; margin-left:82%; margin-top:-1.3em">UNCH</h4>
+            </div>
+        {% else %}
+            <div style="clear:both" class="row col-12">
+                <h2 style="color:white" class="display-2">{{ item.ticker }}</h2>
+                <h3 style="color:#d9534f; margin-left:59%" class="display-3">${{ item.price }}</h3>
+                <h4 style="color:#d9534f; margin-left:82%; margin-top:-1.3em">{{ item.change }} ({{ item.change_percentage }}%)</h4>
+            </div>
+        {% endif %}
+        <h2 style="margin-top:-.98em; margin-left:6em">{{ item.company_name }}</h2>
+        <form action="{% url 'watchlist' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="ticker" value="{{ item.ticker }}">
+            <input type="hidden" name="add_or_remove" value="remove">
+            <button name="save" class="btn btn-dark">Remove from watchlist</button>
+        </form>
+    {% endfor %}
+{% endblock %}

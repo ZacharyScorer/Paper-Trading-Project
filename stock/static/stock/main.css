@@ -1,0 +1,20 @@
+.jumbotron {
+    background-color:#152238;
+    height: 100vh;
+}
+
+#today-gain {
+    top: 310px;
+    left: 1310px;
+    position: absolute;
+    z-index: 1;
+    visibility: visible;
+}
+
+#today-neutral {
+    top: 310px;
+    left: 1350px;
+    position: absolute;
+    z-index: 1;
+    visibility: visible;
+}

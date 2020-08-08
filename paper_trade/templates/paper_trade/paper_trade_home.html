@@ -1,0 +1,31 @@
+{% extends "stock/base.html" %}
+{% block content %}
+    <h1>Paper Trading</h1>
+    <!-- Search bar -->
+    <form action="{% url 'paper_trade-search' %}">
+        {% csrf_token %}
+        <button name="search" class="btn btn-dark">Buy/Sell Shares</button> Money: ${{ money }}
+    </form>
+    <table class="table table-striped table-dark" id="top-gainer-table">
+        <thead>
+            <tr>
+                <th scope="col">Symbol</th>
+                <th scope="col">Shares Owned</th>
+                <th scope="col">Average Cost</th>
+                <th scope="col">Current Cost</th>
+                <th scope="col">Overall Gain</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+                <tr>
+                    <th scope="row">{{ item.ticker }}</th>
+                    <td>{{ item.amount }}</td>
+                    <td>${{ item.price }}</td>
+                    <td>${{ item.current_price }}</td>
+                    <td>${{ item.price_difference }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock content%}

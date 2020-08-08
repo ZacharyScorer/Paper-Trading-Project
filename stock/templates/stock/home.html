@@ -1,0 +1,54 @@
+{% extends "stock/base.html" %}
+{% block content %}
+    <h1 class="display-1 text-center">Welcome to Stocks</h1>
+
+    <!-- Gainers Table -->
+    <h1 style="color:#5cb85c">Top Gainers</h1>
+    <table class="table table-striped table-dark" id="top-gainer-table">
+        <thead>
+            <tr>
+                <th scope="col" style="width: 12%">Symbol</th>
+                <th scope="col" style="width: 38%">Name</th>
+                <th scope="col" style="width: 12%">Last</th>
+                <th scope="col" style="width: 12%">Change</th>
+                <th scope="col">Change Percentage</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in gain %}
+                <tr>
+                    <th scope="row">{{ item.ticker }}</th>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.price }}</td>
+                    <td style="color:#5cb85c">{{ item.change }}</td>
+                    <td style="color:#5cb85c">{{ item.change_percentage }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Losers Table -->
+    <h1 style="color:#d9534f">Top Losers</h1>
+    <table class="table table-striped table-dark" id="top-loser-table">
+        <thead>
+            <tr>
+                <th scope="col" style="width: 12%">Symbol</th>
+                <th scope="col" style="width: 38%">Name</th>
+                <th scope="col" style="width: 12%">Last</th>
+                <th scope="col" style="width: 12%">Change</th>
+                <th scope="col">Change Percentage</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in lose %}
+                <tr>
+                    <th scope="row">{{ item.ticker }}</th>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.price }}</td>
+                    <td style="color:#d9534f">{{ item.change }}</td>
+                    <td style="color:#d9534f">{{ item.change_percentage }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

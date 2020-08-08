@@ -1,0 +1,68 @@
+{% extends "stock/base.html" %}
+{% block content %}
+    <form action="{% url 'paper_trade-home' %}">
+        <h1>Paper Trading <button name="return" class="btn btn-dark"> Return to your portfolio</button></h1>
+    </form>
+    <!-- Search bar -->
+    <form method="POST" action="{% url 'paper_trade-search' %}">
+        {% csrf_token %}
+        <div class="input-ticker">
+            <span class="input-ticker">Enter a Ticker:</span>
+        </div>
+        <input type="text" class="form-control" name="ticker" required>
+        <div class="after-input-ticker" style="padding-top: 5px">
+            <button type="submit" class="btn btn-outline-success btn-lg" role="button">Enter</button>
+        </div>
+    </form>
+    {% if data.gain == 'positive' %}
+        <div style="clear:both">
+            <h1 style="float: left" class="display-1">{{ data.ticker }}</h1>
+            <h1 style="color:#5cb85c; float: right" class="display-3">${{ data.price }}</h1>
+            <div id="today-gain">
+                <h3 style="color:#5cb85c; margin-top:30%">{{ data.change }} ({{ data.change_percentage }}%)</h3>
+            </div>
+        </div>
+    {% elif data.gain == 'neutral' %}
+        <div style="clear:both">
+            <h1 style="float: left" class="display-1">{{ data.ticker }}</h1>
+            <h1 style="color:white; float: right" class="display-3">${{ data.price }}</h1>
+            <div id="today-neutral">
+                <h3 style="color:#ffffff; margin-top:30%">UNCH</h3>
+            </div>
+        </div>
+    {% elif data.gain == 'negative' %}
+        <div style="clear:both">
+            <h1 style="float: left" class="display-1">{{ data.ticker }}</h1>
+            <h1 style="color:#d9534f; float: right" class="display-3">${{ data.price }}</h1>
+            <div id="today-gain">
+                <h3 style="color:#d9534f; margin-top:30%">{{ data.change }} ({{ data.change_percentage }}%)</h3>
+            </div>
+        </div>
+    {% endif %}
+    <br><br><br>
+    <h1>{{ data.company_name }}</h1>
+
+    <!-- Only shows form to add stocks to portfolio if a stock has already been searched for -->
+    {% if data.gain == 'positive' or data.gain == "neutral" or data.gain == "negative" %}
+        <form method="POST" action="{% url 'paper_trade-home' %}">
+            {% csrf_token %}
+            <label>
+                <input type="number" name="amount" min="0" required>
+            </label>
+            <input type="hidden" name="price" value="{{ data.price }}">
+            <input type="hidden" name="ticker" value="{{ data.ticker }}">
+            <input type="hidden" name="buy_or_sell" value="buy">
+            <button name="add" class="btn btn-dark">Buy</button>
+        </form>
+        <form method="POST" action="{% url 'paper_trade-home' %}">
+            {% csrf_token %}
+            <label>
+                <input type="number" name="amount" min="0" required>
+            </label>
+            <input type="hidden" name="price" value="{{ data.price }}">
+            <input type="hidden" name="ticker" value="{{ data.ticker }}">
+            <input type="hidden" name="buy_or_sell" value="sell">
+            <button name="add" class="btn btn-dark">Sell</button>
+        </form>
+    {% endif %}
+{% endblock content %}
