@@ -19,8 +19,6 @@ Paper Trading
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
-
 ### Prerequisite
 
 [Python](https://www.python.org/downloads/)
